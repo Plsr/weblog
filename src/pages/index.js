@@ -1,21 +1,67 @@
 import React from "react"
-import { Link } from "gatsby"
+import get from "lodash/get"
+import Helmet from "react-helmet"
+import glamorous from "glamorous"
+import Layout from "../components/Layout"
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import PostTitle from "../components/PostTitle"
+import PostDate from "../components/PostDate"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+class BlogIndex extends React.Component {
+  render() {
+    const siteTitle = get(this, "props.data.site.siteMetadata.title")
+    const posts = get(this, "props.data.allMarkdownRemark.edges")
 
-export default IndexPage
+    return (
+      <Layout>
+        <Helmet title={siteTitle} />
+        {posts.map(({ node }) => {
+          const title = get(node, "frontmatter.title") || node.fields.slug
+          return (
+            <PostWrapper key={node.fields.slug}>
+              <PostTitle to={node.fields.slug}>{title}</PostTitle>
+              <PostDate>{node.frontmatter.date}</PostDate>
+              <p dangerouslySetInnerHTML={{ __html: node.html }} />
+            </PostWrapper>
+          )
+        })}
+      </Layout>
+    )
+  }
+}
+
+export default BlogIndex
+
+const PostWrapper = glamorous.div({
+  marginBottom: 120,
+  ":last-child": {
+    marginBottom: 0,
+  },
+})
+
+export const pageQuery = graphql`
+  query IndexQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { fileAbsolutePath: { glob: "**/posts/**" } }
+    ) {
+      edges {
+        node {
+          html
+          fields {
+            slug
+          }
+          frontmatter {
+            date(formatString: "MMMM DD, YYYY")
+            title
+          }
+        }
+      }
+    }
+  }
+`
