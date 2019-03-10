@@ -15,11 +15,12 @@ class BlogIndex extends React.Component {
       <Layout>
         <SEO title="Home" />
         {posts.map(({ node }) => {
-          const title = get(node, "frontmatter.title") || node.fields.slug
           return (
             <PostWrapper key={node.fields.slug}>
               <PostDate>{node.frontmatter.date}</PostDate>
-              <PostTitle to={node.fields.slug}>{title}</PostTitle>
+              <PostTitle to={node.fields.slug}>
+                {node.frontmatter.title}
+              </PostTitle>
               <p dangerouslySetInnerHTML={{ __html: node.html }} />
             </PostWrapper>
           )
