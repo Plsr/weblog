@@ -3,8 +3,6 @@ import PropTypes from "prop-types"
 import Link from "gatsby-link"
 import glamorous from "glamorous"
 
-import { primaryColor, lightGrey } from "../utils/colors.js"
-
 class Header extends React.PureComponent {
   render() {
     const { siteTitle } = this.props

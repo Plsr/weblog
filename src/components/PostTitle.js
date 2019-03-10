@@ -2,7 +2,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import glamorous from "glamorous"
 import Link from "gatsby-link"
-import { rhythm } from "../utils/typography"
 
 class PostTitle extends React.PureComponent {
   render() {

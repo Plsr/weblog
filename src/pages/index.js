@@ -1,6 +1,5 @@
 import React from "react"
 import get from "lodash/get"
-import Helmet from "react-helmet"
 import glamorous from "glamorous"
 import Layout from "../components/Layout"
 
@@ -10,7 +9,6 @@ import SEO from "../components/seo"
 
 class BlogIndex extends React.Component {
   render() {
-    const siteTitle = get(this, "props.data.site.siteMetadata.title")
     const posts = get(this, "props.data.allMarkdownRemark.edges")
 
     return (
