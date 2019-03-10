@@ -6,6 +6,7 @@ import Layout from "../components/Layout"
 
 import PostTitle from "../components/PostTitle"
 import PostDate from "../components/PostDate"
+import SEO from "../components/seo"
 
 class BlogIndex extends React.Component {
   render() {
@@ -14,13 +15,13 @@ class BlogIndex extends React.Component {
 
     return (
       <Layout>
-        <Helmet title={siteTitle} />
+        <SEO title="Home" />
         {posts.map(({ node }) => {
           const title = get(node, "frontmatter.title") || node.fields.slug
           return (
             <PostWrapper key={node.fields.slug}>
-              <PostTitle to={node.fields.slug}>{title}</PostTitle>
               <PostDate>{node.frontmatter.date}</PostDate>
+              <PostTitle to={node.fields.slug}>{title}</PostTitle>
               <p dangerouslySetInnerHTML={{ __html: node.html }} />
             </PostWrapper>
           )

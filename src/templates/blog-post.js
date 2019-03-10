@@ -1,22 +1,24 @@
-import React from 'react'
-import Helmet from 'react-helmet'
-import Link from 'gatsby-link'
-import get from 'lodash/get'
-import PostTitle from '../components/PostTitle'
-import PostDate from '../components/PostDate'
+import React from "react"
+import Helmet from "react-helmet"
+import Link from "gatsby-link"
+import get from "lodash/get"
+import Layout from "../components/Layout"
+import PostTitle from "../components/PostTitle"
+import PostDate from "../components/PostDate"
+import SEO from "../components/seo"
 
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
-    const siteTitle = get(this.props, 'data.site.siteMetadata.title')
+    const siteTitle = get(this.props, "data.site.siteMetadata.title")
 
     return (
-      <div>
-        <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
-        <PostTitle>{post.frontmatter.title}</PostTitle>
+      <Layout>
+        <SEO title={post.frontmatter.title} />
         <PostDate>{post.frontmatter.date}</PostDate>
+        <PostTitle>{post.frontmatter.title}</PostTitle>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
-      </div>
+      </Layout>
     )
   }
 }

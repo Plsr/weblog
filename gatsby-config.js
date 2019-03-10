@@ -1,8 +1,13 @@
 module.exports = {
   siteMetadata: {
     title: "chrispop.de",
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    titleTemplate: "%s · chrispop.de",
+    description:
+      "Ein Blog über nichts bestimmtes von niemandem, den du kennst.",
+    author: `@_chrispop`,
+    url: "https://www.chrispop.de",
+    image: "/images/gatsby-astronaut.jpg", // Path to your image you placed in the 'static' folder
+    twitterUsername: "@_chrispop",
   },
   plugins: [
     {
@@ -10,6 +15,13 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/pages`,
+        name: "pages",
       },
     },
     {

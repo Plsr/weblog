@@ -26,9 +26,11 @@ const typography = new Typography({
       color: "#333333",
       borderBottom: `2px solid ${primaryColor}`,
       textDecoration: "none",
+      transition: ".1s",
     },
     "a:hover": {
       borderBottom: `4px solid ${primaryColor}`,
+      transition: ".1s",
     },
     blockquote: {
       marginLeft: 0,

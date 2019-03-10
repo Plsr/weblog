@@ -23,7 +23,7 @@ class Footer extends React.PureComponent {
 }
 
 const Wrapper = glamorous.div({
-  backgroundColor: "#ede6e3",
+  borderTop: "1px solid #eee",
 })
 
 const Content = glamorous.div({

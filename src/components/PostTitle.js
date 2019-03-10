@@ -28,7 +28,7 @@ PostTitle.defaultProps = {
 }
 
 const Headline = glamorous.h3({
-  marginBottom: "40px",
+  marginBottom: "30px",
 })
 
 export default PostTitle

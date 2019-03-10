@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import Link from "gatsby-link"
 import glamorous from "glamorous"
 
-import { primaryColor } from "../utils/colors.js"
+import { primaryColor, lightGrey } from "../utils/colors.js"
 
 class Header extends React.PureComponent {
   render() {
