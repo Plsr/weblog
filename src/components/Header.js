@@ -31,7 +31,7 @@ Header.propTypes = {
 }
 
 const Wrapper = glamorous.div({
-  padding: "40px 0",
+  padding: "40px 10px",
   marginBottom: 40,
   textAlign: "center",
 })
