@@ -21,7 +21,7 @@ class BlogIndex extends React.Component {
               <PostTitle to={node.fields.slug}>
                 {node.frontmatter.title}
               </PostTitle>
-              <p dangerouslySetInnerHTML={{ __html: node.html }} />
+              <div dangerouslySetInnerHTML={{ __html: node.html }} />
             </PostWrapper>
           )
         })}
